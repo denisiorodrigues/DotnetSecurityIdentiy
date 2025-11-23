@@ -1,0 +1,46 @@
+@BaseUrl = https://localhost:7277
+@ContentType = application/json
+
+### Criar usuário
+POST {{BaseUrl}}/api/auth/register
+Content-Type: {{ContentType}}
+
+{
+  "username": "denisio2",
+  "password": "Senha123!",
+  "confirmPassword": "Senha123!",
+  "dateOfBirth": "2025-11-23T23:02:55.201Z"
+}
+
+### Login
+POST {{BaseUrl}}/api/auth/login
+Content-Type: {{ContentType}}
+
+{
+  "email": "usuario@teste.com",
+  "password": "Senha123!"
+}
+
+### Obter todos os usuários (protegido)
+GET {{BaseUrl}}/api/users
+Authorization: Bearer {{auth_token}}
+Content-Type: {{ContentType}}
+
+### Obter usuário por ID
+GET {{BaseUrl}}/api/users/1
+Authorization: Bearer {{auth_token}}
+Content-Type: {{ContentType}}
+
+### Atualizar usuário
+PUT {{BaseUrl}}/api/users/1
+Authorization: Bearer {{auth_token}}
+Content-Type: {{ContentType}}
+
+{
+  "userName": "novo_nome",
+  "email": "novo_email@teste.com"
+}
+
+### Deletar usuário
+DELETE {{BaseUrl}}/api/users/1
+Authorization: Bearer {{auth_token}}

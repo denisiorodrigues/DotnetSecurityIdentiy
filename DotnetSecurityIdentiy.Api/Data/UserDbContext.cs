@@ -6,6 +6,6 @@ namespace DotnetSecurityIdentiy.Api.Data;
 
 public class UserDbContext : IdentityDbContext<User>
 {
-    public UserDbContext(DbContextOptions<DbContext> option) : base(option)
+    public UserDbContext(DbContextOptions<UserDbContext> option) : base(option)
     { }
 }

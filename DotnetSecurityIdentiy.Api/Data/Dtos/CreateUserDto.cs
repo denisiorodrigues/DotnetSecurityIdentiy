@@ -13,7 +13,7 @@ public class CreateUserDto
 
     [Required]
     [Compare("Password", ErrorMessage = "Passwords do not match.")]
-    public string PasswordConfirmation { get; set; }
+    public string ConfirmPassword { get; set; }
 
     [Required]
     public DateTime DateOfBirth { get; set; }
