@@ -1,3 +1,4 @@
+using DotnetSecurityIdentiy.Api.Configuration;
 using DotnetSecurityIdentiy.Api.Data;
 using DotnetSecurityIdentiy.Api.Models;
 using Microsoft.AspNetCore.Identity;
@@ -16,6 +17,9 @@ builder.Services.AddDbContext<UserDbContext>(options =>
 builder.Services.AddIdentity<User, IdentityRole>()
     .AddEntityFrameworkStores<UserDbContext>()
     .AddDefaultTokenProviders();
+
+//Configuration DI
+builder.Services.ConfigureServices();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

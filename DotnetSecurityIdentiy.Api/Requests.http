@@ -6,7 +6,7 @@ POST {{BaseUrl}}/api/auth/register
 Content-Type: {{ContentType}}
 
 {
-  "username": "denisio2",
+  "username": "denisio3",
   "password": "Senha123!",
   "confirmPassword": "Senha123!",
   "dateOfBirth": "2025-11-23T23:02:55.201Z"
