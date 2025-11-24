@@ -17,8 +17,8 @@ POST {{BaseUrl}}/api/auth/login
 Content-Type: {{ContentType}}
 
 {
-  "email": "usuario@teste.com",
-  "password": "Senha123!"
+  "Username": "denisio3",
+  "password": "Senha123!2"
 }
 
 ### Obter todos os usuários (protegido)

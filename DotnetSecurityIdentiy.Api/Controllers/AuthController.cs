@@ -9,10 +9,12 @@ namespace DotnetSecurityIdentiy.Api.Controllers;
 public class AuthController : ControllerBase
 {
     private readonly UserServie userServie;
+    private readonly AuthService authService;
 
-    public AuthController(UserServie userServie)
+    public AuthController(UserServie userServie, AuthService authService)
     {
         this.userServie = userServie;
+        this.authService = authService;
     }
 
     [HttpPost("register")]
@@ -23,4 +25,12 @@ public class AuthController : ControllerBase
 
         return Ok("user created successful");
     }
+
+    [HttpPost("login")]
+    public async Task<IActionResult> Login(LoginUserDto loginUserDto)
+    {
+        await authService.Login(loginUserDto);
+        return Ok("login successful");
+    }
 }
+        
