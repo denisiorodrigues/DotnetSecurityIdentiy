@@ -7,12 +7,15 @@ namespace DotnetSecurityIdentiy.Api.Services;
 public class AuthService
 {
     private readonly SignInManager<User> _signInManager;
-    public AuthService(SignInManager<User> signInManager)
+    private TokenService _tokenService;
+
+    public AuthService(SignInManager<User> signInManager, TokenService tokenService)
     {
         _signInManager = signInManager;
+        _tokenService = tokenService;
     }
 
-    public async Task Login(LoginUserDto loginUserDto)
+    public async Task<string> Login(LoginUserDto loginUserDto)
     {
         var signInResult = await _signInManager.PasswordSignInAsync(loginUserDto.Username, loginUserDto.Password, false, false);
 
@@ -20,5 +23,11 @@ public class AuthService
         {
             throw new ApplicationException("Invalid username or password");
         }
+
+        var user = await _signInManager.UserManager.FindByNameAsync(loginUserDto.Username);
+
+        var token = _tokenService.GenerateToken(user);
+
+        return token;
     }
 }

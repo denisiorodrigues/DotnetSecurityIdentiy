@@ -18,7 +18,7 @@ Content-Type: {{ContentType}}
 
 {
   "Username": "denisio3",
-  "password": "Senha123!2"
+  "password": "Senha123!"
 }
 
 ### Obter todos os usuários (protegido)
