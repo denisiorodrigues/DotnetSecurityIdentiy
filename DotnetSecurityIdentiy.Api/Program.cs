@@ -1,3 +1,4 @@
+using DotnetSecurityIdentiy.Api.Athorization;
 using DotnetSecurityIdentiy.Api.Configuration;
 using DotnetSecurityIdentiy.Api.Data;
 using DotnetSecurityIdentiy.Api.Models;
@@ -17,6 +18,14 @@ builder.Services.AddDbContext<UserDbContext>(options =>
 builder.Services.AddIdentity<User, IdentityRole>()
     .AddEntityFrameworkStores<UserDbContext>()
     .AddDefaultTokenProviders();
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("MinimumAge", policy =>
+    {
+        policy.Requirements.Add(new MinimumAgeRequirement(18));
+    });
+});
 
 //Configuration DI
 builder.Services.ConfigureServices();
