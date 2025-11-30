@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+string connectionString = builder.Configuration["ConnectionStrings:UsuarioConnection"];
 
 builder.Services.AddDbContext<UserDbContext>(options =>
 {

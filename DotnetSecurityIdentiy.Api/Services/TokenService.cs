@@ -7,6 +7,13 @@ namespace DotnetSecurityIdentiy.Api.Services;
 
 public class TokenService
 {
+    private IConfiguration _configuration;
+
+    public TokenService(IConfiguration configuration)
+    {
+        _configuration = configuration;
+    }
+
     public string GenerateToken(User user)
     {
         Claim[] claims = new[]
@@ -16,7 +23,7 @@ public class TokenService
             new Claim(ClaimTypes.DateOfBirth, user.DateOfBirth.ToString("yyyy-MM-dd"))
         };
         
-        var chave = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("ThisIsAVerySecureAndLongSecretKeyForHS256Algorithm")!);
+        var chave = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(_configuration["SymmetricSecurityKey"])!);
         var signingCredentials = new SigningCredentials(chave, SecurityAlgorithms.HmacSha256);
 
         var token = new JwtSecurityToken(
